@@ -5,14 +5,17 @@ const Todos = () => {
 
   const url = 'https://jsonplaceholder.typicode.com/todos';
   const requestOptions = { method: 'GET' };
-  const fetchApi = async () => {
+
+  const getTodos = async () => {
     const response = await fetch(url, requestOptions);
-    const responseJSON = await response.json();
-    setTodos(responseJSON);
+    if (response.ok) {
+      const responseJSON = await response.json();
+      setTodos(responseJSON);
+    }
   };
 
   useEffect(() => {
-    fetchApi();
+    getTodos();
   }, []);
 
   return (
